@@ -1,0 +1,77 @@
+package com.pankajkcodes.currentaffairsgkinhindi.activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
+import com.pankajkcodes.currentaffairsgkinhindi.R;
+
+public class OpenFileActivity extends AppCompatActivity {
+    WebView webView;
+
+
+    @SuppressLint("SetJavaScriptEnabled")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_open_file);
+        // INITIALIZE WEB VIEW
+        webView = (WebView) findViewById(R.id.web_view);
+
+        // ENABLE JAVASCRIPT TO LOAD WEBSITE
+        webView.getSettings().setJavaScriptEnabled(true);
+
+        Intent intent = getIntent();
+
+        String url = intent.getStringExtra("url");
+        webView.loadUrl(url);
+
+        // SET VIEW CLIENT FOR OPENING FILE IN YOUR APP
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (webView.canGoBack()) {
+            webView.goBack();
+        } else
+            super.onBackPressed();
+
+    }
+}
+
+
+
+
+// for xml code
+/*
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.OpenFileActivity">
+
+    <WebView
+        android:id="@+id/web_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</LinearLayout>
+
+*/

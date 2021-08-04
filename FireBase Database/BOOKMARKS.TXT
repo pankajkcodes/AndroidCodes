@@ -1,0 +1,104 @@
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // To Save Data offline
+        preferences = getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        gson = new Gson();
+
+
+
+
+
+
+
+      /*
+  getBookmarks();
+        bookmarksBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (modelMatch()){
+                    bookmarkList.remove(matchedQuestionPosition);
+                    bookmarksBtn.setImageDrawable(getDrawable(R.drawable.border_bookmarks));
+                }else {
+                    bookmarkList.add(quList.get(position));
+                    bookmarksBtn.setImageDrawable(getDrawable(R.drawable.fill_bookmarks));
+                }
+
+            }
+        });
+*/
+
+
+
+
+
+
+
+
+
+
+
+if (modelMatch()){
+//                            bookmarksBtn.setImageDrawable(getDrawable(R.drawable.fill_bookmarks));
+//                        }else {
+//                            bookmarksBtn.setImageDrawable(getDrawable(R.drawable.border_bookmarks));
+//                        }
+
+
+
+                                                                  
+    // method for get data                                        
+    private void getBookmarks() {                                 
+                                                                  
+        String json = preferences.getString(KEY_NAME, "");        
+        Type type = new TypeToken<List<QuestionsModel>>() {       
+        }.getType();                                              
+        bookmarkList = gson.fromJson(json, type);                 
+        if (bookmarkList == null) {                               
+            bookmarkList = new ArrayList<>();                     
+                                                                  
+        }                                                         
+    }                                                             
+
+
+                                                                                             
+    private boolean modelMatch() {                                                           
+        boolean matched = false;                                                             
+        int i = 0;                                                                           
+        for (QuestionsModel model : bookmarkList) {                                          
+                                                                                             
+            if (model.getQuestion().equals(quList.get(position).getQuestion())               
+                    && model.getAnswer().equals(quList.get(position).getAnswer())            
+                    && model.getSetId().equals(quList.get(position).getSetId())) {           
+                matched = true;                                                              
+                matchedQuestionPosition = i;                                                 
+            }                                                                                
+            i++;                                                                             
+        }                                                                                    
+        return matched;    
+
+
+   // method for save data                                  
+   private void storeBookmarks() {                          
+       String json = gson.toJson(bookmarkList);             
+       editor.putString(KEY_NAME, json);                    
+       editor.commit();                                     
+   }                                                        
+
+
+  storeBookmarks();   
+                                                                  

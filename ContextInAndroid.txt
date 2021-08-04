@@ -1,0 +1,98 @@
+How to Use Context Correctly in Android -->
+
+The Context in Android is one of the most important objects and actually is the Context of the current state of 
+the application with major responsibilities such as:
+Getting information regarding the activity and application.
+Getting access to the database, application-specific resources (strings, drawable, …) and classes, filesystems,
+and shared preferences.
+
+Up-calls for application-level operations such as launching activities, broadcasting, and receiving intents.
+As you can see, almost everything in Android needs access to Context, so if we use it wrong, it can lead to memory
+leaks. Mainly there are two types of Context:
+Application Context: This Context is bound to the life cycle of an application. That means as long as 
+the application has not been killed, it is available. Chiefly it is a singleton instance that can be 
+accessed from your application class via getApplicationContext(). The application Context can be 
+used where you need a Context whose lifecycle is separate from the current Context. 
+
+The main point about application Context is that it is not UI related Context. So, 
+if we want to start an activity by using an intent or showing a toast or anything else related to the UI,
+even If we are fetching something that should be themed, we shouldn’t use the application Context.
+Notice that holding a reference to activity in a long-living object or thread can cause a memory leak. 
+
+In this case, also use the application Context. Below is the list of application Context functionalities:
+1. Load resource values,
+2. Start a service,
+3. Bind to a service,
+4. Send a broadcast,
+5. Register broadcastReceiver.
+
+Activity Context: As it is obvious this Context is bound to the life cycle of activity and is accessible as long as activity lives via getContext(). We should use the activity Context when we want to call the Context from only the current running activity and for operations related to the UI such as:
+1. Load resource values,
+2. Layout inflation,
+3. Start an activity,
+4. Show a dialog or a toast
+5. Start a service,
+6. Bind to a service,
+7. Send a broadcast,
+8. Register broadcastReceiver.
+Other than above mentioned getApplicationContext() and getContext(), you might have seen getBaseContext() and
+this as the Context in Android. getBaseContext() is the method of ContextWrapper which is:
+Proxying implementation of Context that simply delegates all of its calls to another Context. 
+Can be subclassed to modify behavior without changing the original Context.
+With getBaseContext() we can fetch the existing Context inside the ContextWrapper class.
+Also this refers to the instance of the class and can be used whenever the Context is needed 
+inside an activity. Below are a few use cases that require a Context object using Java and Kotlin:
+
+1.Kotlin Source Code -->
+//if you want to start the activity from an activity, you should pass 'this' as context.
+val intent = Intent(this, <YourClassname>::class.java)
+startActivity(intent)
+
+
+//view.getContext() refers to the current activity view. 
+listView.setOnItemClickListener { parent, view, position, id -> 
+    val myElement = adapter.getItemAtPosition(position) 
+    val intent = Intent(view.getContext(), <YourClassname>::class.java)
+    view.getContext().startActivity(intent)
+}
+
+
+2.Java Source Code -->
+public class ApplicationListAdapter extends RecyclerView.Adapter<
+    ApplicationListAdapter.ApplicationListViewHolder> {
+    ...
+      
+    @NonNull
+    @Override
+    public ApplicationListAdapter.ApplicationListViewHolder onCreateViewHolder(
+        @NonNull ViewGroup parent, int viewType) {
+        //the correct context can be inferred from the parent view as 'parent.getContext()' for inflation.
+        View view = 
+            LayoutInflater.from(parent.getContext())
+            .inflate(R.layout.list_row_application, parent, false);
+        return new ApplicationListViewHolder(view);
+    }
+    ...
+      
+    public class ApplicationListViewHolder extends RecyclerView.ViewHolder {
+        private final ImageView mApplication_icon;
+
+        public ApplicationListViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            mApplication_icon = itemView.findViewById(R.id.application_image);
+        }
+
+        private void bind(Application application) {
+            //Context is needed outside of the onCreateViewHolder() method which is retrieved 
+via 'itemView.getContext()'.
+            Glide.with(itemView.getContext())
+                    .load(application.getIcon())
+                    .placeholder(R.mipmap.ic_launcher)
+                    .into(mApplication_icon);
+
+        }
+    } 
+    ...
+}
+

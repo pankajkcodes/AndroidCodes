@@ -1,0 +1,55 @@
+// <----- Upload and save to firbase storage and firebase database ------> Start here//
+
+// firebase database referance
+var databaseRef = firebase.database().ref("Blogs");
+databaseRef.once("value").then(function (snapshot) {
+  // get your image and image name
+  var picture = $("#main-image").prop("files")[0];
+  var nameStr = new Date().getTime();
+  var fileCompleteName = "img" + "_" + nameStr;
+
+  // firebase storage referance
+  var storageRef = firebase.storage().ref("blogImages");
+  var blogStorageRef = storageRef.child(fileCompleteName);
+  var uploadTask = blogStorageRef.put(picture);
+
+  uploadTask.on('state_changed', function (snapshot) {
+    // handle progressbar here
+    var percent = (snapshot.bytesTransferred / snapshot.total) * 100;
+
+   // $("#upload-progress").html(Math.round(percent) + "%");
+       $("#upload-progress").attr("style" + "width:" + percent + "%");
+
+  },
+    // handle error here
+    function error(err) {
+      console.log(err.message);
+
+    },
+    // handle successfull on complete
+    function () {
+      //var desc = $("#main-desc").val();
+      uploadTask.snapshot.ref.getDownloadURL().then(function (downloadUrl) {
+        var blogData = {
+          "images": downloadUrl,
+          "desc": desc,
+          "counter": counter
+        };
+
+        var newPostRef = databaseRef.push();
+        newPostRef.set(blogData, function (err) {
+          if (err) {
+            $("#result").attr("class", "alert alert-danger");
+            $("#result").html(err.message);
+          } else {
+            $("#result").attr("class", "alert alert-success");
+            $("#result").html("blog has been uploaded successfully");
+          }
+          window.open("", "_self");
+        });
+
+      });
+    }
+  );
+});
+// <---- Upload and save to firbase storage and firebase database -----> Ends here//

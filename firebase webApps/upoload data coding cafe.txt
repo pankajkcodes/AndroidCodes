@@ -1,0 +1,40 @@
+ var validImagetypes = ["image/gif,image/jpeg,image/png,image/jpj"]
+
+        $("#selected-image").hide();
+
+        function previewImage(image_blog) {
+            var reader = new FileReader();
+            if (image_blog.files && image_blog.files[0]) {
+                reader.onload = function (e) {
+                    $("#selected-image").attr('src', e.target.result);
+
+                }
+                reader.readAsDataURL(image_blog.files[0])
+                $("#selected-image").show();
+            }
+
+        }
+        $("#main-image").change(function () {
+            previewImage(this);
+        });
+        $("#save-blog").click(function () {
+            $("#main-desc").removeClass("is-invalid");
+            $("#main-image").removeClass("is-invalid");
+            var desc = $("#main-desc").val();
+
+            var picture = $("#main-image").prop("files")[0];
+
+            if (!desc) {
+                $("#main-desc").addClass("is-invalid");
+                return;
+            }
+
+            if (picture == null) {
+                $("#main-image").addClass("is-invalid");
+                return;
+            }
+            if ($.inArray(picture["type"], validImagetypes) > 0) {
+                $("#main-image").addClass("is-invalid");
+                return;
+            }
+        });

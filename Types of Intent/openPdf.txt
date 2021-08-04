@@ -1,0 +1,7 @@
+      Intent intent = new Intent(Intent.ACTION_VIEW);
+                //default app using url
+                intent.setDataAndType(Uri.parse(upload.getFileUrl()), "application/pdf");
+
+                //browser using the upload url
+             //   intent.setData(Uri.parse(upload.getFileUrl()));
+                startActivity(intent);

@@ -1,0 +1,58 @@
+package com.pankajkcodes.recylarviewtutorial;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
+import android.os.Bundle;
+
+import com.pankajkcodes.recylarviewtutorial.Adopters.RecipeAdopter;
+import com.pankajkcodes.recylarviewtutorial.Models.RecipeModel;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
+    RecyclerView recyclerView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        recyclerView = findViewById(R.id.recyclerview);
+
+        ArrayList<RecipeModel> list = new ArrayList<>();
+        list.add(new RecipeModel(R.drawable.food1,"Samosa"));
+        list.add(new RecipeModel(R.drawable.food2,"Chatani"));
+        list.add(new RecipeModel(R.drawable.food3,"AluSamosa"));
+        list.add(new RecipeModel(R.drawable.food4,"BadaSamosa"));
+        list.add(new RecipeModel(R.drawable.food5,"MazaSamosa"));
+        list.add(new RecipeModel(R.drawable.food5,"MazaSamosa"));
+        list.add(new RecipeModel(R.drawable.food5,"MazaSamosa"));
+        list.add(new RecipeModel(R.drawable.food5,"MazaSamosa"));
+        list.add(new RecipeModel(R.drawable.food6,"Sbestamosa"));
+        list.add(new RecipeModel(R.drawable.food6,"Sbestamosa"));
+
+
+        RecipeAdopter adopter = new RecipeAdopter(list,this);
+        recyclerView.setAdapter(adopter);
+
+
+        StaggeredGridLayoutManager Staggered = new StaggeredGridLayoutManager(4,
+                StaggeredGridLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(Staggered);
+//
+//        GridLayoutManager gridlayoutManager = new GridLayoutManager(this,2);
+//       recyclerView.setLayoutManager(gridlayoutManager);
+
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(layoutManager);
+//
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this,
+//                LinearLayoutManager.HORIZONTAL, false);
+//        recyclerView.setLayoutManager(layoutManager);
+
+    }
+}

@@ -1,0 +1,11 @@
+public boolean insert_data(String name,String username,String password){
+        SQLiteDatabase sqlObj = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("name",name);
+        cv.put("username",username);
+        cv.put(" password", password);
+        long wd = sqlObj.insert("users",null,cv);
+        if (wd==-1) return false;
+        else
+            return true;
+    }

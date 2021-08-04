@@ -1,0 +1,66 @@
+package com.pankajkcodes.onclicklistener;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    // First initialize the text views
+    TextView TvFirst ,TvWay1;
+    TextView TvSecond ,TvWay2;
+    TextView TvThird ,TvWay3;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        TvFirst = findViewById(R.id.first);
+        TvWay1 = findViewById(R.id.way1);
+        TvSecond = findViewById(R.id.second);
+        TvWay2 = findViewById(R.id.way2);
+        TvThird = findViewById(R.id.third);
+        TvWay3 = findViewById(R.id.way3);
+
+        //Call Here to OnClickMethod here
+      TvSecond.setOnClickListener(this);
+      TvWay2.setOnClickListener(this);
+
+
+        TvFirst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"FirstWayForClickListener",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        TvWay1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"first Way",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.second:
+                Toast.makeText(this,"Second Way on ClickListener",Toast.LENGTH_LONG) .show();
+                break;
+            case R.id.way2:
+                Toast.makeText(this,"Second Way",Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    public void thirdWay(View view) {
+        Toast.makeText(this, "ThirdWayToONClickListener", Toast.LENGTH_SHORT).show();
+    }
+
+    public void Way3(View view) {
+        Toast.makeText(this, "Way3ofONClickListener", Toast.LENGTH_SHORT).show();
+    }
+}

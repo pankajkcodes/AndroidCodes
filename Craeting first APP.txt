@@ -1,0 +1,66 @@
+Creating Our First Android App (with APK) |
+Inside java  folder of your project  there will be mainly two files: “activity_main.xml” and “MainActivity.java”. 
+Basically activity_main.xml file is about the structure of our application and MainActivity.java is the soul of our application.
+
+Open the activity_main.xml, it has two modes, design mode and text mode. Its up to you whether you want to write the XML code (Text mode)
+ or just drag the drop the components of your choice(Design mode).      
+
+
+1.A view group is a view that can contain other child views. The nested views structure will be similar to a tree where view will be the leaf node 
+(it cannot have child views).
+
+2.We can fix an image on our app by applying an image view by dragging: Widgets >ImageView to our app’s design mode view.
+
+3.You can constraint the widget you use to determine the position .You can create the constraints manually by just pulling it from all sides
+ and joining(imagine it as if  you are pulling a spring ) it to the corners of the screen.
+
+
+4.To name the resources (buttons, textbox etc) we can either click on that resource and go to its properties and name it or 
+as a best practice we can name these resources in the string.xml  file  .Open  string.xml file by navigating to: Project:app/res/values/strings.xml
+file and click on open editor, there you can add the key (id) and default value(string).
+This makes it easier for us to reuse long strings and maintaining a record of the used strings in our app.
+
+5.To make button execute some java code when you click it, assign the name of the method (in which the  code to perform that task is written) in
+the onClick property of the button.
+
+ 
+6.Toast is simply a pop up text that is visible when you click a button. To implement the toast text you just have to write a simple line of  code
+which is given as follows:-
+
+Toast.makeToast (this, "The text you want ..", Toast.LENGTH_SHORT).show();
+
+To build APK file of your application go to Build>Build bundle(s)>APK(s)>Build APK(s)
+
+
+
+Sourse Code -->
+
+package com.example.firstapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    public void sendNow(View view){
+        Toast.makeText(this, "Sending data from app...", Toast.LENGTH_SHORT).show();
+    }
+
+    public void receiveNow(View view){
+        Toast.makeText(this, "Receiving data from app...", Toast.LENGTH_SHORT).show();
+    }
+
+    public void deleteNow(View view){
+        Toast.makeText(this, "Deleting data from app...", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
+

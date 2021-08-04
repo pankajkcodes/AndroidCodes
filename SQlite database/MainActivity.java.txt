@@ -1,0 +1,22 @@
+package com.pankajkcodes.sqlitedataabse;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    Database dbObj;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+       //creating obj of database
+        dbObj = new Database(this);
+        SQLiteDatabase sqlObj = dbObj.getReadableDatabase();
+   
+    }
+}

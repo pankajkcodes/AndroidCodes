@@ -1,0 +1,43 @@
+ shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                share();
+            }
+        });
+
+    }
+
+    private void share() {
+     Bitmap shareBit = bitmapFromView(CodeImg);
+     try {
+         File file = new File(getExternalCacheDir(),"img.jpg");
+         FileOutputStream fOut = new FileOutputStream(file);
+         shareBit.compress(Bitmap.CompressFormat.JPEG,100,fOut);
+         fOut.flush();
+         fOut.close();
+         Intent intent = new Intent(Intent.ACTION_SEND);
+         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+         intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+         intent.setType("image/jpg");
+         startActivity(Intent.createChooser(intent,"Share By"));
+
+
+
+
+     } catch (Exception e) {
+         e.printStackTrace();
+     }
+    }
+    @SuppressLint("ResourceAsColor")
+    private Bitmap bitmapFromView(View view){
+        Bitmap returnBitmap = Bitmap.createBitmap(view.getWidth(),view.getHeight(),Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(returnBitmap);
+        Drawable codeDrawable = view.getBackground();
+        if (codeDrawable != null){
+            codeDrawable.draw(canvas);
+        }else {
+           canvas.drawColor(android.R.color.white);
+        }
+        view.draw(canvas);
+        return returnBitmap;
+    }

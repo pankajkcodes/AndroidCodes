@@ -1,0 +1,42 @@
+package com.pankajkcodes.fragments;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.transition.FragmentTransitionSupport;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+
+public class MainActivity extends AppCompatActivity {
+    Button Btn1,Btn2;
+    LinearLayout linearLayout;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Btn1 = findViewById(R.id.first);
+        Btn2 = findViewById(R.id.second);
+        linearLayout = findViewById(R.id.linearlayout);
+        Btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BlankFragment1 blankFragment1 = new BlankFragment1();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.linearlayout,blankFragment1);
+                transaction.commit();
+            }
+        });
+        Btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BlankFragment2 blankFragment2 = new BlankFragment2();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.linearlayout,blankFragment2);
+                transaction.commit();
+            }
+        });
+    }
+}

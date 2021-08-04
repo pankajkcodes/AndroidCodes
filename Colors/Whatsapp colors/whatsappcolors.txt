@@ -1,0 +1,14 @@
+  color name="colorPrimary"                       #0b6156
+  color name="colorPrimaryDark"                   #095049
+  color name="colorAccent"                        #03DAC5
+  color name="white"                              #fff
+  color name="lightGrey"                          #EDEDED
+ color name="whatsAppColor"                       #0b6156
+ color name="red"                                 #9F0B0B
+ color name="status_background"                   #009688
+ color name="chat_background"                     #8BC34A
+ color name="fb_color"                            #3c5793
+ color name="black"                               #040303
+ color name="lightgreen"                          #e5ffcc
+color name="settingsIconColor"                    #0E8374
+color name="grayBackground"                       #BCBCBC

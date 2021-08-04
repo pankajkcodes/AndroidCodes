@@ -1,0 +1,35 @@
+ <item
+        android:id="@+id/action_privacy"
+        android:orderInCategory="100"
+        android:title="@string/privacy_policy"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_contact"
+        android:orderInCategory="100"
+        android:title="@string/contact_us"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="100"
+        android:title="@string/about_us"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_rate"
+        android:orderInCategory="100"
+        android:title="@string/rate_us"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_exit"
+        android:orderInCategory="100"
+        android:title="@string/exit"
+        app:showAsAction="never" />
+
+
+
+  <string name="privacy_policy">Privacy Policy</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="about_us">About Us</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="exit">Exit</string>
+

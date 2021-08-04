@@ -1,0 +1,31 @@
+ /// load data from firebase
+
+FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference();
+
+
+    myRef.child("categories").child("category2").child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Toast.makeText(MainActivity.this, snapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+/// basic data strucuture
+programming-language-notes-default-rtdb
+-categories
+     -category1
+        -chapters: 10
+        -name: "java"
+        -url: "photourl"
+     -category2
+        -chapter: 11
+        -name: "python"
+        -url: "photourl"

@@ -1,0 +1,7 @@
+  color name="instafirstclor           #3c43e5
+   color name="instacenterclord     #34267
+    color name="instalastclor"          #f6ac35
+    color name="statusbarcolor"      #CECECE
+    color name="white"                      # ffff
+    color name="textcolor"               #464646
+    color name="icontint"                  #00363636

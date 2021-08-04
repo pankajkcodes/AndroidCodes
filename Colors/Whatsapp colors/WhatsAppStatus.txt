@@ -1,0 +1,56 @@
+  private void getData() {
+
+        WhatsAppStoryModel model;
+        String targetPath = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                "WhatsApp/Media/.statuses";
+        File targetDirectory = new File(targetPath);
+        File[] allFiles = targetDirectory.listFiles();
+
+        String targetPathBusiness = Environment.getExternalStorageDirectory().getAbsolutePath() +
+                "WhatsApp Business/Media/.statuses";
+        File targetDirectoryBusiness = new File(targetPathBusiness);
+        File[] allFilesBusiness = targetDirectoryBusiness.listFiles();
+
+        Arrays.sort(allFiles, ((o1, o2) -> {
+            if (o1.lastModified() > o2.lastModified()) {
+                return -1;
+            } else if (o1.lastModified() < o2.lastModified()) {
+                return 1;
+            } else
+                return 0;
+        }));
+
+        for (int i = 0; i < allFiles.length; i++) {
+            File file = allFiles[i];
+            if (Uri.fromFile(file).toString().endsWith(".png") ||
+                    Uri.fromFile(file).toString().endsWith(".jpg")) {
+                model = new WhatsAppStoryModel("whats" + i,
+                        Uri.fromFile(file),
+                        allFiles[i].getAbsolutePath(),
+                        file.getName());
+                list.add(model);
+
+            }
+        }
+
+        Arrays.sort(allFilesBusiness, ((o1, o2) -> {
+            if (o1.lastModified() > o2.lastModified()) {
+                return -1;
+            } else if (o1.lastModified() < o2.lastModified()) {
+                return 1;
+            } else
+                return 0;
+        }));
+
+        for (int i = 0; i < allFilesBusiness.length; i++) {
+            File file = allFilesBusiness[i];
+            if (Uri.fromFile(file).toString().endsWith(".png") ||
+                    Uri.fromFile(file).toString().endsWith(".jpg")) {
+                model = new WhatsAppStoryModel("whatsBusiness" + i,
+                        Uri.fromFile(file),
+                        allFilesBusiness[i].getAbsolutePath(),
+                        file.getName());
+                list.add(model);
+
+            }
+        }

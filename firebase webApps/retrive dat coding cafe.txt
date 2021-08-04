@@ -1,0 +1,26 @@
+
+// //************ <- Retrive and Display data from database -> Start Here  **************//
+
+// var dbBlogs = firebase.database().ref().child("Blogs").orderByChild("counter");
+// dbBlogs.on("value", function (blogs) {
+
+//   if (blogs.exists()) {
+//     var blogsHtml = "";
+
+//     blogs.forEach(function (singleBlog) {
+//       counter = counter + 1;
+//       blogsHtml += "<div class='jumbotron bg-light text-dark border border-dark'>";
+//       blogsHtml += "<div> <img width='805' height='405' src='";
+//       blogsHtml += singleBlog.val().image;
+//       blogsHtml += "/> </div> <br>";
+//       blogsHtml += "<div class='row'> ";
+//       blogsHtml += "<div class='col-sm-5'> <p style='color:grey;'>"
+//         + singleBlog.val().desc + "</p> </div> "
+
+//       blogsHtml += "</div> <br>";
+//       blogsHtml += "</div>";
+
+//     });
+//     $("#blogs").html(blogsHtml)
+//   }
+// });

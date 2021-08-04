@@ -1,0 +1,45 @@
+How to Build a Simple Notes App in Android?
+Notes app is used for making short text notes, update when you need them, and trash when you are done. 
+It can be used for various functions as you can add your to-do list in this app, some important notes 
+for future reference, etc. The app is very useful in some cases like when you want quick access to the notes. 
+Likewise, here let’s create an Android App to learn how to create a simple NotesApp. So in this article let’s 
+build a Notes App in which the user can add any data, remove any data as well as edit any data. A sample GIF 
+is given below to get an idea about what we are going to do in this article. Note that we are going to implement 
+this project using the Java language. 
+
+Steps for Creating a Notes App
+Step 1: Create a New Project
+
+To create a new project in Android Studio please refer to How to Create/Start a New Project in Android Studio. 
+Note that select Java as the programming language.
+
+Step 2: Working with the activity_main.xml file
+n the activity_main.xml file add a ListView and a TextView. ListView is added to display the list of auto-saved notes and 
+TextView is used to simply display the GFG text. Below is the complete code for the activity_main.xml file. 
+
+Step 3: Create a new layout to show the menu
+Go to app > res > right-click > New > Directory and named it as menu. Then click on app > res > menu > New > 
+Menu resource file and name the file as add_note_menu.  Below is the code for the add_note_menu.xml file. 
+
+Step 4: Create a new empty activity
+Go to app > java > right-click > New > Activity > Empty Activity and name it as NoteEditorActivity. 
+In this activity, we are going to type our notes. So in the activity_note_editor.xml file add an EditText to add data to ListView. 
+Below is the code for the activity_note_editor.xml file. 
+Now in the NoteEditorActivity.java file write code to store data. Add SharedPreference into the App to store the data in the Phone Memory. 
+Setting Values in SharedPreference:
+SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+editor.putString(“name”, “Elena”);
+editor.putInt(“idName”, 12);
+editor.apply();
+SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);  
+// No name defined is the default value.
+String name = prefs.getString(“name”, “No name defined”);
+// 0 is the default value.
+int idName = prefs.getInt(“idName”, 0);
+
+Step 5: Working with the MainAtivity.java file
+Now set up all the things in the MainActivity.java file. Calling the NoteEditorActivity.java code, join all the XML code to java and run the app. 
+Below is the complete code for the MainActivity.java file. Comments are added inside the code to understand the code in more detail.
+
+filter_none
+

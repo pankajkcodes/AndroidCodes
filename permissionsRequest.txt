@@ -1,0 +1,9 @@
+// Here, thisActivity is the current activity
+if (ContextCompat.checkSelfPermission(thisActivity,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        != PackageManager.PERMISSION_GRANTED) {
+
+      ActivityCompat.requestPermissions(thisActivity,
+              new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+              YourRequestCode);
+}

@@ -1,0 +1,43 @@
+package com.pankajkcodes.wifidemo;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.net.wifi.WifiManager;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+    Button onBtn,offBtn;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        onBtn = (Button) findViewById(R.id.onbtn);
+        offBtn = (Button) findViewById(R.id.offbtn);
+
+        onBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               WifiManager wifi = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                wifi.setWifiEnabled(true);
+                Toast.makeText(MainActivity.this, "Wifi Enabled", Toast.LENGTH_SHORT).show();
+            }
+        });
+        offBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WifiManager wifi = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                wifi.setWifiEnabled(false);
+                Toast.makeText(MainActivity.this, "Wifi Disabled", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+
+    }
+}

@@ -1,0 +1,28 @@
+package com.pankajkcodes.sqlitedataabse;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+public class Database extends SQLiteOpenHelper {
+    private static final String dbname = "signup.db";
+    public Database(@Nullable Context context) {
+        super(context, dbname, null ,1);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        //code for database connectivity
+        String q = "create table users(_id Integer primary key autoincrement,name text,username text,password text)";
+        db.execSQL(q);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+          db.execSQL("drop  table if exists users");
+          onCreate(db);
+
+    }
+ 
+}

@@ -1,0 +1,15 @@
+  private void copy() {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("text",shayari_text.getText());
+        if (clipboardManager != null){
+            clipboardManager.setPrimaryClip(clipData);
+            Toast.makeText(this, "Copied", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+    private void share(){
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT,shayari_text.getText());
+        startActivity(Intent.createChooser(intent,"Share to"));
+    }

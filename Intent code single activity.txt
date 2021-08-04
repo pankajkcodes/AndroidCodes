@@ -1,0 +1,23 @@
+public class MainActivity extends AppCompatActivity {
+//First declare view
+    TextView TV1;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+	
+	// find view 
+        TV1 = findViewById(R.id.firstAcivity);
+
+	// then set onclick listener to listen 
+        TV1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+        
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
+}

@@ -1,0 +1,50 @@
+package com.pankajkcodes.web2appdemo;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
+
+public class MainActivity extends AppCompatActivity {
+    // INITIALIZE WEB VIEW
+    private WebView webView;
+    ProgressBar progressBar;
+
+    @SuppressLint("SetJavaScriptEnabled")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // STORE URL IN STRING
+        String url = "https://www.google.com";
+        webView = findViewById(R.id.webView);
+        webView.loadUrl(url);
+        progressBar = (ProgressBar)  findViewById(R.id.progressBar);
+
+        // ENABLE JAVASCRIPT TO LOAD WEBSITE
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+
+        // SET VIEW CLIENT FOR OPENING FILE IN YOUR APP
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+    }
+    @Override
+    public void onBackPressed(){
+        if (webView.canGoBack()){
+            webView.goBack();
+        }
+        else 
+            super.onBackPressed();
+       
+    }
+}

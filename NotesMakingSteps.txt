@@ -1,0 +1,26 @@
+How to Build a Simple Notes App in Android?
+Steps follows:
+Step 1: Create a New Project
+
+Step 2: Working with the activity_main.xml file
+
+In the activity_main.xml file add a ListView and a TextView. 
+ListView is added to display the list of auto-saved notes and 
+TextView is used to simply display the GFG text. Below is the 
+complete code for the activity_main.xml file.
+
+Step 3: Create a new layout to show the menu
+
+Go to app > res > right-click > New > Directory and named it as menu. 
+Then click on app > res > menu > New > Menu resource file and name 
+the file as add_note_menu.  Below is the code for the add_note_menu.xml file. 
+
+Step 4: Create a new empty activity
+
+Go to app > java > right-click > New > Activity > Empty Activity and name it as 
+NoteEditorActivity. In this activity, we are going to type our notes. So in the 
+activity_note_editor.xml file add an EditText to add data to ListView. Below is 
+the code for the activity_note_editor.xml file. 
+
+Now in the NoteEditorActivity.java file write code to store data. Add SharedPreference 
+into the App to store the data in the Phone Memory. Setting Values in SharedPreference:
